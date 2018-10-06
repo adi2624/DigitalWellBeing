@@ -13,7 +13,15 @@ def api_root():
 @app.route('/sendme', methods = ['POST'])
 def api_articles():
     if request.headers['Content-Type'] == 'text/plain':
-        return "You Vivek Text Message: " + request.data
+        article_data = parser.fetch_data(request.data)
+        data={
+            "link": request.data,
+            "heading": article_data["heading"],
+            "article": article_data["article_body"]
+        }
+        js = json.dumps(data)
+        resp = Response(js,status=200,mimetype='application/json')
+        return resp
     elif request.headers['Content-Type'] == 'application/json':
         print(json.dumps(request.json))
         json_object = json.loads(json.dumps(request.json))
