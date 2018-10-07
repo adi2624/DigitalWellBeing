@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Credibility Analyzer-News</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://necolas.github.io/normalize.css/7.0.0/normalize.css" rel="stylesheet">
+         <link href="index.css" rel="stylesheet">
+         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+         <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+         <script
+             src="https://code.jquery.com/jquery-3.2.1.min.js"
+             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+             crossorigin="anonymous"></script>
+         <script src="login.js"></script>
+    <style>
+    .cardo {
+        background: rgb(255, 255, 255);
+        border-radius: 2px;
+        display: inline-block;
+        height: 300px;
+        margin: 1rem;
+        position: relative;
+        width: 300px;
+        padding: 10px;
+    }
+    .card-2 {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    </style>
+</head>
+<body>
+    
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" style="color:black" >Fake News or Real News?</a>
+      <ul class="right hide-on-med-and-down">
+          <li><i class="medium material-icons" style="color:black">insert_chart</i>
+        <li><a href="second.html" style="color:black">Analyze News</a></li>
+        <li></li>
+        <li></li>
+        <li><i class="medium material-icons" style="color:black">center_focus_weak</i>
+          <li><a href="index.html" style="color:black">Analyze Image</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#" style="color:black">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  
+  
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Link Analyzer</h1>
+      <div class="row center">
+          <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">speaker_notes</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">www.fakenews??????.com</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+      </div>
+      <div class="row center">
+        <button id="download-button" class="btn-large waves-effect waves-light orange">Analyze Link</button>
+        <script>
+          
+       
+            document.getElementById("download-button").addEventListener("click", displayDate);
+            
+            function displayDate() {
+               
+                var link = document.getElementById("icon_prefix").value;
+                
+                
+
+       var tablink = link;
+            
+            const Url1 = 'http://35.237.208.254:5000/sendme';
+        
+             var json;
+             var another;
+             var obj_to_send = String(tablink);
+             var data = {'name': obj_to_send, 'id':'stuff'};
+             var xhr = new XMLHttpRequest();
+             xhr.open("POST",Url1,true);
+             xhr.setRequestHeader("Content-type","text/plain");
+             xhr.send(obj_to_send);   
+        
+             xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                  json = JSON.parse(xhr.responseText);
+                 
+                  document.getElementById("card").style="visibility:"
+                 
+                  //document.getElementById("card").innerText=json.heading+"\n"+"\n"+json.article;
+
+                  console.log(json.article);
+                  another = xhr.responseText;
+                  var json2 ;
+                  const Url2 = 'http://35.229.124.91:5000/analyze';
+                  var xhr2 = new XMLHttpRequest();
+                  xhr2.open("POST",Url2,true);
+                  xhr2.setRequestHeader("Content-type","application/json");
+                  xhr2.send(another);
+                  xhr2.onreadystatechange = function () {
+                  if (xhr2.readyState === 4 && xhr2.status === 200) {
+                      json2 = xhr2.responseText;
+                 
+                      document.getElementById("card").innerHTML="<h1>"+json.heading+"</h1><br>"+json.article+"<br>"+"<h1>"+json2+"</h1>";
+                       console.log(json2);
+                       }
+                  };
+              }
+              };
+      }
+            </script>
+            <div class="container">
+                <div class="card" id="card" style="visibility:hidden">
+                   
+                </div>
+                   
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  
+
+  
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>

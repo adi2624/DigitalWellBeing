@@ -1,0 +1,32 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file to complement the API that goes with parser.py
+  version: "1.0.0"
+  title: Swagger Parser API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /article:
+    get:
+      operationId: "parser.fetch_data"
+      tags:
+        - "Article"
+      
+      summary: "The article from the URL"
+      description: "The article from the URL"
+      responses:
+        200:
+          description: "Successful parsing from URL"
+          schema:
+            type: "array"
+            items:
+              properties:
+                text:
+                  type: "string"
+                

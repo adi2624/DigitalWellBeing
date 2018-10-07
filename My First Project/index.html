@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Credibility Analyzer</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://necolas.github.io/normalize.css/7.0.0/normalize.css" rel="stylesheet">
+         <link href="index.css" rel="stylesheet">
+         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+         <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+         <script
+             src="https://code.jquery.com/jquery-3.2.1.min.js"
+             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+             crossorigin="anonymous"></script>
+         <script src="login.js"></script>
+</head>
+<body>
+    
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" style="color:black" >Fake News or Real News?</a>
+      <ul class="right hide-on-med-and-down">
+          <li><i class="medium material-icons" style="color:black">insert_chart</i>
+        <li><a href="second.html" style="color:black">Analyze News</a></li>
+        <li></li>
+        <li></li>
+        <li><i class="medium material-icons" style="color:black">center_focus_weak</i>
+          <li><a href="index.html" style="color:black">Analyze Image</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#" style="color:black">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Image Analyzer</h1>
+      
+      <div class="row center">
+        <div class="upload_area"></div>
+          <form action = "http://35.229.124.91:5001/uploader" method = "POST" 
+          enctype = "multipart/form-data">
+          <input type = "file" name = "file"/>
+             <input type = "submit" />
+             </form>
+      </div>
+      
+      <br><br>
+
+    </div>
+  </div>
+
+
+  
+
+  
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
