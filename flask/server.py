@@ -1,15 +1,25 @@
+import os
 from flask import Flask
 from flask import request
 from flask import json
 from flask import Response
+from flask import render_template
+from flask_cors import CORS
 import parser
 app = Flask(__name__)
-
+CORS(app)
+UPLOAD_FOLDER = os.path.basename('uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/')
 def api_root():
         return 'Welcome'
 
-
+@app.route('/api',methods=['POST'])
+def upload_image():
+    file=request.files['image']
+    f=os.path.join(app.config['UPLOAD_FOLDER'],file.filename)
+    file.save(f)
+    return render_template('image.html')
 @app.route('/sendme', methods = ['POST'])
 def api_articles():
     if request.headers['Content-Type'] == 'text/plain':
