@@ -9085,7 +9085,8 @@ input[type=range]::-ms-thumb {
 }
 .tweet.row{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-left:330px;
+    margin-left:230px;
+
 }
 blockquote.twitter-tweet {
   display: inline-block;
@@ -9136,4 +9137,20 @@ blockquote.twitter-tweet a:focus {
 #profile-follow{
   float: right;
   width:29%;
+}
+#card{
+  align-content: center;
+  width: auto;
+  margin: 10px;
+  color: #546e7a;
+  background-color: wheat;
+  height: auto;
+  box-shadow: #000;
+  padding: 10%;
+}
+#cardo{
+  align-content: center;
+  width: auto;
+  margin: 10px;
+  height: auto;
 }

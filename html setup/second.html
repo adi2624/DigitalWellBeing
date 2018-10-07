@@ -19,6 +19,21 @@
              integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
              crossorigin="anonymous"></script>
          <script src="login.js"></script>
+    <style>
+    .cardo {
+        background: rgb(255, 255, 255);
+        border-radius: 2px;
+        display: inline-block;
+        height: 300px;
+        margin: 1rem;
+        position: relative;
+        width: 300px;
+        padding: 10px;
+    }
+    .card-2 {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    </style>
 </head>
 <body>
     
@@ -46,14 +61,70 @@
                   <div class="input-field col s6">
                     <i class="material-icons prefix">speaker_notes</i>
                     <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">www.fakenews????.com</label>
+                    <label for="icon_prefix">www.fakenews??????.com</label>
                   </div>
                 </div>
               </form>
             </div>
       </div>
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Analyze Link</a>
+        <button id="download-button" class="btn-large waves-effect waves-light orange">Analyze Link</button>
+        <script>
+          
+         
+            document.getElementById("download-button").addEventListener("click", displayDate);
+            
+            function displayDate() {
+                alert( "Handler for .click() called." );
+                var link = document.getElementById("icon_prefix").value;
+                confirm('Your web url is \n'+link);
+     
+       var tablink = link;
+            confirm('Your web url is \n'+tablink);
+            const Url1 = 'http://35.237.208.254:5000/sendme';
+        
+             var json;
+             var another;
+             var obj_to_send = String(tablink);
+             var data = {'name': obj_to_send, 'id':'stuff'};
+             var xhr = new XMLHttpRequest();
+             xhr.open("POST",Url1,true);
+             xhr.setRequestHeader("Content-type","text/plain");
+             xhr.send(obj_to_send);   
+        
+             xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                  json = JSON.parse(xhr.responseText);
+                  confirm("Recieved link is "+ json.article);
+                  document.getElementById("card").style="visibility:"
+                 
+                  //document.getElementById("card").innerText=json.heading+"\n"+"\n"+json.article;
+
+                  console.log(json.article);
+                  another = xhr.responseText;
+                  var json2 ;
+                  const Url2 = 'http://35.229.124.91:5000/analyze';
+                  var xhr2 = new XMLHttpRequest();
+                  xhr2.open("POST",Url2,true);
+                  xhr2.setRequestHeader("Content-type","application/json");
+                  xhr2.send(another);
+                  xhr2.onreadystatechange = function () {
+                  if (xhr2.readyState === 4 && xhr2.status === 200) {
+                      json2 = xhr2.responseText;
+                      confirm("Recieved link from Devi is "+ json2);
+                      document.getElementById("card").innerHTML="<h1>"+json.heading+"</h1><br>"+json.article+"<br>"+"<h1>"+json2+"</h1>";
+                       console.log(json2);
+                       }
+                  };
+              }
+              };
+      }
+            </script>
+            <div class="container">
+                <div class="card" id="card" style="visibility:hidden">
+                   
+                </div>
+                   
       </div>
       <br><br>
 
